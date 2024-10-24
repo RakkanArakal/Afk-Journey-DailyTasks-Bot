@@ -1,5 +1,5 @@
 adb_path = 'C:/Program Files/Netease/MuMu Player 12/shell'
-project_path = 'C:\\Users\\HSL\\Desktop\\github\\Afk-Journey-DailyTasks-Bot'
+project_path = 'C:\\Users\\HSL\\Desktop\\github\\AutoBot\\Afk-Journey-DailyTasks-Bot'
 images_folder = project_path + '\\images'
 data_folder = project_path + '\\data'
 tmp_path = project_path + '\\tmp'

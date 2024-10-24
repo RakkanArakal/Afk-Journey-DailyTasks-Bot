@@ -29,15 +29,15 @@ def click_play_button(screenshot,screenshot_dimensions):
     
     return 
 
-def main(turns):
+def main(flag):
     
-    counter = 0
+    counter = 1
     
     while 1:
         
         global_utils.click([100, 1500])
         
-        time.sleep(3)
+        time.sleep(10)
         
         screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
         
@@ -45,35 +45,61 @@ def main(turns):
         
         # global_utils.find_and_click(config.project_path+'\\images\\accept.png', screenshot)
         
-        if(global_utils.find_and_click(config.project_path+'\\images\\challenge.png', screenshot)):
-            time.sleep(3)
-            screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
-            global_utils.find_and_click(config.project_path+'\\images\\record.png', screenshot)
+        # search_haystack_image = global_utils.search(config.project_path+'\\images\\challenge.png', screenshot)
+        
+        if flag :
             
-            screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
-            global_utils.find_and_click(config.project_path+'\\images\\adopt.png', screenshot)
+            if(global_utils.find_and_click(config.project_path+'\\images\\challenge.png', screenshot)):
+                flag = False
+                time.sleep(3)
+                global_utils.click([500, 1500])    
+                time.sleep(3)
+                global_utils.click([130, 1050])
+                
+        else:
             
-            screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
-            global_utils.find_and_click(config.project_path+'\\images\\accept.png', screenshot)
+            if(global_utils.find_and_click(config.project_path+'\\images\\talent.png', screenshot)):
+                flag = True
+                time.sleep(3)
+                global_utils.click([500, 1500])    
+                time.sleep(3)
+                global_utils.click([130, 1050])
             
-            screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
-            global_utils.find_and_click(config.project_path+'\\images\\auto_challenge.png', screenshot)
+
+            
+            # if counter % 2 == 1 :
+            #     global_utils.click(search_haystack_image[1])
+            # else:
+            #     global_utils.click([search_haystack_image[1][0]-400,search_haystack_image[1][1]])
+            
+            # time.sleep(5)
+            
+            # screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
+            # global_utils.find_and_click(config.project_path+'\\images\\record.png', screenshot)
+            
+            # screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
+            # global_utils.find_and_click(config.project_path+'\\images\\adopt.png', screenshot)
+            
+            # screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
+            # global_utils.find_and_click(config.project_path+'\\images\\accept.png', screenshot)
+            
+            # screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
+            # global_utils.find_and_click(config.project_path+'\\images\\auto_challenge.png', screenshot)
             
             # screenshot = global_utils.take_screenshot("tmp\\"+str(counter)+".png")
             # global_utils.find_and_click(config.project_path+'\\images\\afk.png', screenshot)
             # global_utils.find_and_click(config.project_path+'\\images\\accept.png', screenshot)
-            time.sleep(3)
-            global_utils.click([130, 1050])
+
             
         
         end = global_utils.end_timer()
         global_utils.log_time_elapsed(
-            "get_time", end-start)
+            "afk_get_time", end-start)
 
         # click_possible_button(screenshot)
         
         counter += 1
-        if counter > 100:
+        if counter > 10:
             counter = 0
             clear_tmp.clear()
 
@@ -85,4 +111,4 @@ if __name__ == "__main__":
 
     android_connection.connect()
     
-    main(6)
+    main(False)
